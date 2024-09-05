@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "pedemais"
+version = "0.1.0"
+description = ""
+authors = ["vfsphotos <viniciusfphotographer@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+django = "^5.1.1"
+ipython = "^8.27.0"
+ipdb = "^0.13.13"
+taskipy = "^1.13.0"
+ruff = "^0.6.3"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.taskipy.tasks]
+run = 'python3 manage.py runserver'
+lint = 'ruff check . && ruff check . --diff'
+format = 'ruff check . --fix && ruff format .'
