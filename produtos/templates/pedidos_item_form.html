@@ -1,0 +1,29 @@
+{% extends pedidos_list.html %}
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adicionar Item ao Pedido</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+{%  block adicionar_item %}
+<body>
+    <h1>Adicionar Item ao Pedido</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <label for="preco">Preço:</label>
+        <input type="number" name="preco" id="preco" step="0.01" required>
+
+        <label for="quantidade">Quantidade:</label>
+        <input type="number" name="quantidade" id="quantidade" value="1" required>
+
+        <button type="submit">Adicionar Item</button>
+    </form>
+    <a href="{% url 'pedidos_detail' pedido.id %}">Voltar para os detalhes do pedido</a>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+{% endblock adicioanar_item %}
