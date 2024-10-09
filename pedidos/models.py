@@ -1,6 +1,6 @@
 from django.db import models
 
-class Order(models.Model):
+class Pedidos(models.Model):  # noqa: F811
     OPEN = 'open'
     CANCELED = 'canceled'
     PAID = 'paid'
@@ -15,32 +15,32 @@ class Order(models.Model):
         'created date',
         auto_now_add=True
     )
-    total_price = models.DecimalField(
-        'total price',
+    total_preco = models.DecimalField(
+        'total preco',
         max_digits=10,
         decimal_places=2,
         default=0
     )
 
     class Meta:
-        db_table = 'orders'
+        db_table = 'pedidos'
 
-class OrderedItem(models.Model):
-    price = models.DecimalField(
-        'price',
+class PedidosItem(models.Model):
+    preco = models.DecimalField(
+        'preco',
         max_digits=10,
         decimal_places=2,
         default=0
     )
-    quantity = models.IntegerField(
-        'quantity',
+    quantidade = models.IntegerField(
+        'quantidade',
         default=1
     )
-    order = models.ForeignKey(
-        'Orders',
+    pedidos = models.ForeignKey(
+        Pedidos,
         on_delete=models.CASCADE,
-        related_name='ordered_items'
+        related_name='pedidos_items'
     )
 
     class Meta:
-        db_table = 'order_item'
+        db_table = 'pedidos_item'

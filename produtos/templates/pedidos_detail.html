@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Pedido</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <h1>Detalhes do Pedido</h1>
+    <p><strong>ID:</strong> {{ pedido.id }}</p>
+    <p><strong>Status:</strong> {{ pedido.get_status_display }}</p>
+    <p><strong>Data de Criação:</strong> {{ pedido.date_create }}</p>
+    <p><strong>Total:</strong> R$ {{ pedido.total_preco }}</p>
+
+    <h2>Itens do Pedido</h2>
+    <ul>
+        {% for item in pedido.pedidos_items.all %}
+        <li>
+            Preço: R$ {{ item.preco }} - Quantidade: {{ item.quantidade }}
+        </li>
+        {% empty %}
+        <li>Nenhum item adicionado.</li>
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'pedidos_item_create' pedido.id %}">Adicionar Item</a>
+    <a href="{% url 'pedidos_list' %}">Voltar para a lista de pedidos</a>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

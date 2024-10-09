@@ -1,0 +1,53 @@
+{%  load static %}
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Pedidos</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+{% block pedidos %}
+
+{%  block adicionar_item %}
+{% endblock adicioanar_item %}
+
+<body>
+    <h1>Lista de Pedidos</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Status</th>
+                <th>Data de Criação</th>
+                <th>Total</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for pedido in pedidos %}
+            <tr>
+                <td>{{ pedido.id }}</td>
+                <td>{{ pedido.get_status_display }}</td>
+                <td>{{ pedido.date_create }}</td>
+                <td>R$ {{ pedido.total_preco }}</td>
+                <td>
+                    <a href="{% url 'pedidos_detail' pedido.id %}">Ver Detalhes</a>
+                    <a href="{% url 'pedidos_item_create' pedido.id %}">Adicionar Item</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'pedidos_create' %}">Criar Novo Pedido</a>
+    
+    # arquivos javascript para  interção da página
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+{% endblock content %}
+</body>
+</html>

@@ -1,14 +1,12 @@
 from django.contrib import admin
-from .models import Order, OrderedItem
+from .models import Pedidos, PedidosItem  # noqa: F401
 
-class OrderedItemInline(admin.TabularInline):
-    model = OrderedItem
+class PedidosItemInline(admin.TabularInline):
+    model = PedidosItem
     extra = 1
 
-class OrderAdmin(admin.ModelAdmin):
-    list_display = ('id', 'status', 'date_create', 'total_price')
+class PedidosAdmin(admin.ModelAdmin):
+    list_display = ('id', 'status', 'date_create', 'total_preco')
     list_filter = ('status',)
     search_fields = ('id',)
-    inlines = [OrderedItemInline]
-
-admin.site.register(Order, OrderAdmin)
+    inlines = [PedidosItemInline]
