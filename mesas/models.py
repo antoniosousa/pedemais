@@ -8,8 +8,8 @@ class Tables(models.Model):
         ('busy', 'Busy'),
     ]
 
-    client = models.ForeignKey(
-        "user", on_delete=models.CASCADE)
+    #client = models.ForeignKey(
+        #"User", on_delete=models.CASCADE)
     date_reservation = models.DateTimeField(
         default=timezone.now)
     status = models.CharField(
